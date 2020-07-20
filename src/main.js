@@ -5,10 +5,8 @@ function add_todo_trigger(){
     //getting the data from the field.
     let inputValue = input.value;
     input.value = '';
-    let creationTime = new Date();
-    let timePresentor = creationTime.getFullYear() + "-" + creationTime.getMonth() +
-    "-" + creationTime.getDate() + " " + creationTime.getHours() + ":" +
-     creationTime.getMinutes() + ":" + creationTime.getSeconds();
+    let creationTime = new Date().toISOString().substr(0,18);
+    let timePresentor = creationTime.replace("T", " Created At: ")
      const selectedPriority = inputPriority.value;
      let dateTodo = dueDateInput.value;
      dueDateInput.value = '';
@@ -32,7 +30,7 @@ function show_task_on_screen(todo_priority, time, text, date){
     task.setAttribute('class', 'todoText');
     const timeCreated = document.createElement("span");
     timeCreated.setAttribute('class', 'todoCreatedAt');
-    timeCreated.textContent ="Created at: " + time;
+    timeCreated.textContent =time;
     const priority = document.createElement('strong');
     priority.setAttribute('class', 'todoPriority');
     priority.textContent = todo_priority + " : ";

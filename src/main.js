@@ -6,9 +6,6 @@ function add_todo_trigger(){
         return;
     }
     input.value = '';
-    todoCounter ++;
-    counter.textContent = todoCounter; // process of the counter of the todo tasks.
-    //getting the data from the field.
     if(todoCounter > limitTask)//feature reminder to complete your todo tasks;
     {
     alert("Come on start completing your tasks");
@@ -32,6 +29,8 @@ function add_todo_trigger(){
 }
 
 function show_task_on_screen(todo_priority, time, text, date){
+    todoCounter ++;
+    counter.textContent = todoCounter;
     const container = document.createElement("div");
     container.setAttribute('class', 'todoContainer');
     const doneButton = document.createElement("button");
@@ -69,7 +68,7 @@ function show_task_on_screen(todo_priority, time, text, date){
     container.appendChild(breakLine);
     container.appendChild(anotherBreakLine);
     doneButton.addEventListener('click', function(){done_button_trigger(container, time);});
-    input.focus(); // getting back to focus on the input.
+    input.focus();
     
 }
 
@@ -84,22 +83,67 @@ function done_button_trigger(childPlacement, deleted_todo_time){
     input.focus();
 }
 
-
-function sortButtonTrigger(){  
-    clean_presented_list();
-    todoListArr = todoListArr.sort(); // sorts the list
-    for(let i = todoListArr.length - 1; i >= 0; i--){
+function show_all_taskList(todoListArr){
+    for(let i = 0; i< todoListArr.length; i++){
         show_task_on_screen(todoListArr[i][0], todoListArr[i][1], todoListArr[i][2], todoListArr[i][3])  // present the sorted list.
     } 
     input.focus();
+    }
+
+function sortButtonTrigger(){  
+    clean_presented_list();
+    todoListArr = todoListArr.sort().reverse(); // sorts the list
+    show_all_taskList(todoListArr);
     }
 
 function clean_presented_list() {
     while(tasksList.firstChild){
         tasksList.removeChild(tasksList.lastChild); // first it cleans the shown list;
     }
+    todoCounter = 0;
 }
 
+function search_button_trigger(text) {
+    disable_Buttons_In_Search_Mode();
+    const searchResultArr = [];
+    for(let i = 0; i < todoListArr.length; i++){
+        let str = todoListArr[i][2];
+        if(str.includes(text)){
+            searchResultArr.push(todoListArr[i]);
+        }
+    }
+    clean_presented_list();
+    show_all_taskList(searchResultArr);
+}
+
+function all_task_button_trigger() {
+    input.value = "";
+    able_Buttons_In_AllTask_Mode();
+    clean_presented_list();
+    show_all_taskList(todoListArr);
+}
+
+function disable_Buttons_In_Search_Mode() {
+    sortButton.disabled = true;
+    sortButton.style.backgroundColor="LightGray";
+    addButton.disabled = true;
+    addButton.style.backgroundColor="LightGray";
+    searchButton.disabled = true;
+    searchButton.style.backgroundColor="LightGray";
+    allTasksButton.disabled = false;
+    allTasksButton.style.backgroundColor="green";
+}
+
+function able_Buttons_In_AllTask_Mode() {
+    sortButton.disabled = false;
+    sortButton.style.backgroundColor="green";
+    addButton.disabled = false;
+    addButton.style.backgroundColor="green";
+    searchButton.disabled = false;
+    searchButton.style.backgroundColor="green";
+    allTasksButton.disabled = true;
+    allTasksButton.style.backgroundColor="LightGray";
+}
 // control section:
 const limitTask = 5;
 const counter = document.getElementById("counter");
@@ -114,10 +158,22 @@ const input = document.querySelector('input');
 input.focus();
 const dueDateInput = document.getElementById("dueTime");
 addButton.addEventListener('click', add_todo_trigger);
-// sorting button and calling function.
 const sortButton = document.getElementById("sortButton");
 sortButton.addEventListener('click', sortButtonTrigger);
-
 let today = new Date().toISOString().substr(0, 10);
-
 document.querySelector("#dueTime").setAttribute('min', today);
+const searchButton = document.getElementById('searchButton');
+searchButton.addEventListener('click', function(){
+    search_button_trigger(input.value);});
+const allTasksButton = document.getElementById('allTask');
+allTasksButton.disabled = true;
+allTasksButton.addEventListener('click', all_task_button_trigger);
+const helpButton = document.getElementById('helpButton');
+helpButton.addEventListener('click', function(){
+    alert("we need to put instructions");
+})
+input.addEventListener('keyup', function (event) {
+    if (event.keyCode === 13){
+       addButton.click(); 
+    }
+})

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -10,7 +10,8 @@
     <h1>TodoList</h1>
     <section id="control-section">
         <span id="number_of_todo">Number of TODOs: <strong id="counter"></strong></span>
-        <div class="form_input"></div><input id="textInput" type="text" name="taskName" placeholder="Enter your Todo here">
+        <button id="helpButton">?</button>
+        <div class="form_input"></div><input id="textInput" type="text" name="taskName" placeholder="Add/Search Todo task">
         <label for="taskName" class="form__label"></label></div>
         <label id="label_of_priority">Priority: </label>
         <select id="prioritySelector">
@@ -24,6 +25,8 @@
         <input type="date" id="dueTime"><br>
         <button id="addButton">Add</button>
         <button id="sortButton">Sort</button>
+        <button id="searchButton">Search</button>
+        <button id="allTask">Refresh</button>
     </section>
 
     <section id="view-section">

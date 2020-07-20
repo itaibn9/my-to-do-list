@@ -1,7 +1,7 @@
 
 function add_todo_trigger(){
     todoCounter ++;
-    counter.textContent = todoCounter; // process of the counter of the todo tasks.
+    counter.textContent = todoCounter + " "; // process of the counter of the todo tasks.
     //getting the data from the field.
     let inputValue = input.value;
     input.value = '';
@@ -10,45 +10,60 @@ function add_todo_trigger(){
     "-" + creationTime.getDate() + " " + creationTime.getHours() + ":" +
      creationTime.getMinutes() + ":" + creationTime.getSeconds();
      const selectedPriority = inputPriority.value;
+     let dateTodo = dueDateInput.value;
+     dueDateInput.value = '';
      // add todo data to array
      let todoTaskArr = [];
      todoTaskArr.push(selectedPriority);
      todoTaskArr.push(timePresentor);
      todoTaskArr.push(inputValue);
+     todoTaskArr.push(dateTodo);
      todoListArr.push(todoTaskArr);
 
-     show_task_on_screen(selectedPriority, timePresentor, inputValue);
+     show_task_on_screen(selectedPriority, timePresentor, inputValue, dateTodo);
 }
 
-function show_task_on_screen(todo_priority, time, text){
+function show_task_on_screen(todo_priority, time, text, date){
     const container = document.createElement("div");
     container.setAttribute('class', 'todoContainer');
-    const deleteButton = document.createElement("button");
-    const task = document.createElement("span");
+    const doneButton = document.createElement("button");
+    doneButton.setAttribute('class', 'done_button');
+    const task = document.createElement("i");
     task.setAttribute('class', 'todoText');
     const timeCreated = document.createElement("span");
     timeCreated.setAttribute('class', 'todoCreatedAt');
-    timeCreated.textContent = time;
+    timeCreated.textContent ="Created at: " + time;
     const priority = document.createElement('strong');
     priority.setAttribute('class', 'todoPriority');
     priority.textContent = todo_priority + " : ";
+    const dateExpire = document.createElement("strong");
+    dateExpire.setAttribute('class', 'experassion_day');
+    if(date === ''){dateExpire.textContent = "No due time"}
+    else{dateExpire.textContent = "until: " + date + " ";}
     tasksList.appendChild(container);
+    if(text === "" || text === " " || text === "  "){text = "you didn't insert a Todo task"};
     task.textContent = " - " + text + " - ";
+    doneButton.textContent = 'Done';
     container.appendChild(priority);
-    deleteButton.textContent = 'Delete';
     container.appendChild(timeCreated);
     container.appendChild(task); 
-    container.appendChild(deleteButton);
-    
-    deleteButton.addEventListener('click', function(){delete_button_trigger(container, time);});
+    container.appendChild(dateExpire);
+    container.appendChild(doneButton);
+    const breakLine = document.createElement('br');
+    const anotherBreakLine = document.createElement('br');
+    container.appendChild(breakLine);
+    container.appendChild(anotherBreakLine);
+
+    doneButton.addEventListener('click', function(){done_button_trigger(container, time);});
     input.focus(); // getting back to focus on the input.
-    if(todoCounter > 4)//feature reminder to complete your todo tasks;
+    if(todoCounter > 5)//feature reminder to complete your todo tasks;
     {
     alert("Come on start completing your tasks");
     }
+   
 }
 
-function delete_button_trigger(childPlacement, deleted_todo_time){
+function done_button_trigger(childPlacement, deleted_todo_time){
     tasksList.removeChild(childPlacement);
     todoCounter --;
     counter.textContent = todoCounter;
@@ -63,7 +78,7 @@ function sortButtonTrigger(){
     clean_presented_list();
     todoListArr = todoListArr.sort(); // sorts the list
     for(let i = todoListArr.length - 1; i >= 0; i--){
-        show_task_on_screen(todoListArr[i][0], todoListArr[i][1], todoListArr[i][2])  // present the sorted list.
+        show_task_on_screen(todoListArr[i][0], todoListArr[i][1], todoListArr[i][2], todoListArr[i][3])  // present the sorted list.
     } 
     }
 
@@ -82,7 +97,7 @@ const inputPriority = document.getElementById('prioritySelector');
 const tasksList = document.querySelector('ul');
 const addButton = document.getElementById('addButton');
 const input = document.querySelector('input');
-
+const dueDateInput = document.getElementById("dueTime");
 addButton.addEventListener('click', add_todo_trigger);
 
 // sorting button and function.

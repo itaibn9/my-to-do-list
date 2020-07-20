@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <h1>TodoList</h1>
     <section id="control-section">
         <p>Number of TODOs: <strong id="counter"></strong><button id="sortButton">Sort</button></p>
-        <input id="textInput" type="text" placeholder="Enter your Todo">
+        <div class="form_input"><input id="textInput" type="text" name="taskName" placeholder="Enter your Todo">
+        <label for="taskName" class="form__label">Name</label></div>
         <select id="prioritySelector">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -17,7 +19,9 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        <button id="addButton">Add</button>
+        <button id="addButton">Add</button><br>
+        <label for="dueTime">please insert the due time day:</label>
+        <input type="date" id="dueTime">
     </section>
 
     <section id="view-section">

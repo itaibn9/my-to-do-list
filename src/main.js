@@ -11,7 +11,6 @@ function add_todo_trigger(){
     alert("Come on start completing your tasks");
     }
     
-    
     let creationTime = new Date().toISOString().substr(0,18);
     let timePresentor = creationTime.replace("T", "  ")
      const selectedPriority = inputPriority.value;
@@ -90,7 +89,7 @@ function show_all_taskList(todoListArr){
     input.focus();
     }
 
-function sortButtonTrigger(){  
+function sort_Button_Trigger(){  
     clean_presented_list();
     todoListArr = todoListArr.sort().reverse(); // sorts the list
     show_all_taskList(todoListArr);
@@ -116,7 +115,7 @@ function search_button_trigger(text) {
     show_all_taskList(searchResultArr);
 }
 
-function all_task_button_trigger() {
+function refresh_button_trigger() {
     input.value = "";
     able_Buttons_In_AllTask_Mode();
     clean_presented_list();
@@ -144,37 +143,38 @@ function able_Buttons_In_AllTask_Mode() {
     allTasksButton.disabled = true;
     allTasksButton.style.backgroundColor="LightGray";
 }
-// control section:
-const limitTask = 5;
+// Declare new variables from HTML.
+const inputPriority = document.getElementById('prioritySelector');
+const tasksList = document.querySelector('ul');
+const addButton = document.getElementById('addButton');
+const input = document.querySelector('input');
+const dueDateInput = document.getElementById("dueTime");
+const sortButton = document.getElementById("sortButton");
+let today = new Date().toISOString().substr(0, 10);
+document.querySelector("#dueTime").setAttribute('min', today);
+const searchButton = document.getElementById('searchButton');
+const allTasksButton = document.getElementById('allTask');
+const helpButton = document.getElementById('helpButton');
+allTasksButton.disabled = true;
+// Variables declaration.
+const limitTask = 5; // After passing this limit, alert will be shown.
 const counter = document.getElementById("counter");
 let todoCounter = 0;
 counter.textContent = todoCounter; 
 let todoListArr = []; // array of all the to do list tasks.
-const inputPriority = document.getElementById('prioritySelector');
-// view section:
-const tasksList = document.querySelector('ul');
-const addButton = document.getElementById('addButton');
-const input = document.querySelector('input');
+
+//events declaration.
 input.focus();
-const dueDateInput = document.getElementById("dueTime");
 addButton.addEventListener('click', add_todo_trigger);
-const sortButton = document.getElementById("sortButton");
-sortButton.addEventListener('click', sortButtonTrigger);
-let today = new Date().toISOString().substr(0, 10);
-document.querySelector("#dueTime").setAttribute('min', today);
-const searchButton = document.getElementById('searchButton');
+sortButton.addEventListener('click', sort_Button_Trigger);
 searchButton.addEventListener('click', function(){
-    search_button_trigger(input.value);});
-const allTasksButton = document.getElementById('allTask');
-allTasksButton.disabled = true;
-allTasksButton.addEventListener('click', all_task_button_trigger);
-const helpButton = document.getElementById('helpButton');
+search_button_trigger(input.value);});
+allTasksButton.addEventListener('click', refresh_button_trigger);
 helpButton.addEventListener('click', function(){
-    alert('To add task fill the input field, your priority (1-low, 5-high) and due date (optional) and press the Add button.\nIf you just want to add task with a default priority (1) and no due date you can simply click enter after filling the field input.\nTo sort the list by priority from high to low, press Sort button.\nTo search a task, fill the search text in the input fill and click Search button.\nYou will get all the To-DO tasks that contains your search text, and all the action buttons will be disabled.\nYou can mark a task as done also at the Search list.\nTo see again the full To-Do list press the Refresh button.\nWhen you finish a task or you simply want to remove it, press the Done button on the actual task.\nTask due date – A task that is due for today will be marked yellow.\nTask that passed the due date will be marked red.');
+    alert('To add task fill the input field, your priority (1-low, 5-high) and due date (optional) and press the Add button.\n- If you just want to add task with a default priority (1) and no due date you can simply click enter after filling the field input.\n- If you have more than 5 open tasks you will get an alert that will encourage you to finish tasks.\n- To sort the list by priority from high to low, press Sort button.\n- To search a task, fill the search text in the input fill and click Search button.\n- You will get all the To-DO tasks that contains your search text, and all the action buttons will be disabled.\n- You can mark a task as done also at the Search list.\n- To see again the full To-Do list press the Refresh button.\n- When you finish a task or you simply want to remove it, press the Done button on the actual task.\n- Task due date – A task that is due for today will be marked yellow.\n- Task that passed the due date will be marked red.');
 });
 input.addEventListener('keyup', function (event) {
     if (event.keyCode === 13){
        addButton.click(); 
     }
-
 });

@@ -9,19 +9,21 @@
 <body>
     <h1>TodoList</h1>
     <section id="control-section">
-        <p>Number of TODOs: <strong id="counter"></strong><button id="sortButton">Sort</button></p>
-        <div class="form_input"></div><input id="textInput" type="text" name="taskName" placeholder="Enter your Todo">
-        <label for="taskName" class="form__label">Name</label></div>
+        <span id="number_of_todo">Number of TODOs: <strong id="counter"></strong></span>
+        <div class="form_input"></div><input id="textInput" type="text" name="taskName" placeholder="Enter your Todo here">
+        <label for="taskName" class="form__label"></label></div>
+        <label id="label_of_priority">Priority: </label>
         <select id="prioritySelector">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
-        </select>
-        <button id="addButton">Add</button><br>
-        <label for="dueTime">please insert the due time day:</label>
-        <input type="date" id="dueTime">
+        </select><br>
+        <label for="dueTime" id="label_due_time">Due date: </label>
+        <input type="date" id="dueTime"><br>
+        <button id="addButton">Add</button>
+        <button id="sortButton">Sort</button>
     </section>
 
     <section id="view-section">

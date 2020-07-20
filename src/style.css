@@ -21,7 +21,7 @@ h1{
     float: left;
 }
 .done_button{
-    background-color: #4CAF50; /* Green */
+    background-color: green; 
     border: none;
     color: white;
     padding: 8px 16px;
@@ -31,6 +31,9 @@ h1{
     display: inline-block;
     font-size: 8px;
     float: right;
+}
+.done_button:hover{
+    background-color: rgb(12, 214, 12);
 }
 .experassion_day{
     color: BurlyWood;
@@ -47,6 +50,7 @@ h1{
     display: inline-block;
     font-size: 8px;
 }
+
 #addButton{
     background-color: green; 
     border: none;
@@ -56,8 +60,8 @@ h1{
     text-decoration: none;
     display: inline-block;
     font-size: 8px;    
-    
 }
+
 #searchButton{
     background-color: green; 
     border: none;
@@ -69,6 +73,7 @@ h1{
     display: inline-block;
     font-size: 8px;
 }
+
 #allTask{
     background-color: LightGray;
     border: none;
@@ -80,6 +85,7 @@ h1{
     display: inline-block;
     font-size: 8px;
 }
+
 .form_input {
   position: relative;
   padding: 0px 0 0;
@@ -130,4 +136,7 @@ body {
     border-radius: 50%;
     background-color: indianred;
     float: right;
+}
+#helpScreen{
+    font-size: 8px;
 }

@@ -170,10 +170,11 @@ allTasksButton.disabled = true;
 allTasksButton.addEventListener('click', all_task_button_trigger);
 const helpButton = document.getElementById('helpButton');
 helpButton.addEventListener('click', function(){
-    alert("we need to put instructions");
-})
+    alert('To add task fill the input field, your priority (1-low, 5-high) and due date (optional) and press the Add button.\nIf you just want to add task with a default priority (1) and no due date you can simply click enter after filling the field input.\nTo sort the list by priority from high to low, press Sort button.\nTo search a task, fill the search text in the input fill and click Search button.\nYou will get all the To-DO tasks that contains your search text, and all the action buttons will be disabled.\nYou can mark a task as done also at the Search list.\nTo see again the full To-Do list press the Refresh button.\nWhen you finish a task or you simply want to remove it, press the Done button on the actual task.\nTask due date – A task that is due for today will be marked yellow.\nTask that passed the due date will be marked red.');
+});
 input.addEventListener('keyup', function (event) {
     if (event.keyCode === 13){
        addButton.click(); 
     }
-})
+
+});

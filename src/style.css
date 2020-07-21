@@ -140,3 +140,7 @@ body {
 #helpScreen{
     font-size: 8px;
 }
+.todoContainer {
+    cursor: move;
+    user-select: none;
+}

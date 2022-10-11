@@ -115,3 +115,9 @@ $ npm run test
  - Add link to the PR you created in your private repo [here](https://docs.google.com/spreadsheets/d/1P9_YDGqIqmV10fvTmIXc_AGV0_ycI2aBFo2h5zprUMI/edit#gid=1903529310), fill the other details
 
  GOOD LUCK!
+
+ SUBMIT MY PROJECT:
+ C:\Users\itaib\OneDrive\Desktop\final pre-course project\my-to-do-list\ui-testing-recording.gif
+https://drive.google.com/file/d/1cZMwaaGxbKETnLk7wvMXi83vypX8QCRP/view?usp=sharing
+ https://my-to-do-list-git-my-task-branch.itaibn9.vercel.app/
+
